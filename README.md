@@ -6,45 +6,7 @@ The project uses Kubernetes Deployments, Services, Secrets, PersistentVolumeClai
 
 ## Architecture
 
-```text
-                         ┌──────────────────────┐
-                         │      WordPress        │
-                         │   Deployment (2 Pods) │
-                         └──────────┬───────────┘
-                                    │
-                           Service: LoadBalancer
-                                    │
-                                    ▼
-                           External Access
-
-                 ┌─────────────────────────────────┐
-                 │        WordPress Storage        │
-                 │                                 │
-                 │ PVC: wordpress-efs-pvc          │
-                 │ PV:  wordpress-efs-pv           │
-                 │ Access: ReadWriteMany (RWX)     │
-                 │ Backend: Amazon EFS              │
-                 └─────────────────────────────────┘
-
-                                    │
-                                    │ MySQL connection
-                                    ▼
-                 ┌─────────────────────────────────┐
-                 │            MySQL                 │
-                 │      Deployment (1 Pod)          │
-                 └──────────────┬──────────────────┘
-                                │
-                         Service: mysql-svc
-                                │
-                 ┌──────────────▼──────────────────┐
-                 │         MySQL Storage            │
-                 │                                  │
-                 │ PVC: mysql-pvc                   │
-                 │ StorageClass: mysql-sc            │
-                 │ Access: ReadWriteOnce (RWO)      │
-                 │ Backend: Amazon EBS               │
-                 └──────────────────────────────────┘
-```
+<img width="1218" height="624" alt="Architecture" src="https://github.com/user-attachments/assets/eb2e5ac5-a022-4cd8-a904-88593b50c951" />
 
 ## Key Features
 
